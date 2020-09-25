@@ -45,11 +45,12 @@ public class Client {
 			/**
 			 * Create a new HttpClient object.
 			 */
-			HttpClient myClient = new HttpClient();
+			HttpClient myClient = new HttpClient();//创建http客户端
 
 			/**
 			 * Parse the input arguments.
 			 */
+			//参数传递错误情况
 			if (args.length != 1) {
 				System.err.println("Usage: Client <server>");
 				System.exit(0);
@@ -58,13 +59,13 @@ public class Client {
 			/**
 			 * Connect to the input server
 			 */
-			myClient.connect(args[0]);
+			myClient.connect(args[0]);//连接到所给IP地址
 
 			/**
 			 * Read the get request from the terminal.
 			 */
 			screen.println(args[0] + " is listening to your request:");
-			String request = keyboard.readLine();
+			String request = keyboard.readLine();//读取输入的命令
 
 			if (request.startsWith("GET")) {
 				/**

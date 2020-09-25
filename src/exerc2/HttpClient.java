@@ -9,7 +9,7 @@ import java.net.Socket;
 /**
  * Class <em>HttpClient</em> is a class representing a simple HTTP client.
  *
- * @author wben
+ * @author hansong
  */
 
 public class HttpClient {
@@ -18,6 +18,7 @@ public class HttpClient {
 	 * default HTTP port is port 80
 	 */
 	private static int port = 80;
+
 
 	/**
 	 * Allow a maximum buffer size of 8192 bytes
@@ -118,7 +119,28 @@ public class HttpClient {
 	 */
 	public void processPutRequest(String request) throws Exception {
 		//=======start your job here============//
-		
+		//客户端指定资源放在服务器端的目录下
+		/**
+		 * Send the request to the server.
+		 */
+
+		String jpgPath = "/Users/hansong/Downloads/Exercise 2/face.jpg";//资源路径
+		File jpgFile = new File(jpgPath);//创建文件对象
+
+		request += CRLF+"Content-Length: "+jpgFile.length()+ CRLF+CRLF;//文件长度
+		ostream.write(request.getBytes());
+
+		FileInputStream jpgStream = new FileInputStream(jpgFile);
+		while(jpgStream.read(buffer)!=-1){
+			ostream.write(buffer,0,buffer.length);
+		}
+		jpgStream.close();
+
+		ostream.flush();
+		/**
+		 * waiting for the response.
+		 */
+		processResponse();
 		
 		//=======end of your job============//
 	}
