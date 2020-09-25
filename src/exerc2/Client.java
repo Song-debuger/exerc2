@@ -45,12 +45,12 @@ public class Client {
 			/**
 			 * Create a new HttpClient object.
 			 */
-			HttpClient myClient = new HttpClient();//´´½¨http¿Í»§¶Ë
+			HttpClient myClient = new HttpClient();//åˆ›å»ºhttpå®¢æˆ·ç«¯
 
 			/**
 			 * Parse the input arguments.
 			 */
-			//²ÎÊı´«µİ´íÎóÇé¿ö
+			//è¿™æ˜¯å‚æ•°ä¼ é€’é”™è¯¯çš„æƒ…å†µ
 			if (args.length != 1) {
 				System.err.println("Usage: Client <server>");
 				System.exit(0);
@@ -59,20 +59,21 @@ public class Client {
 			/**
 			 * Connect to the input server
 			 */
-			myClient.connect(args[0]);//Á¬½Óµ½Ëù¸øIPµØÖ·
+			//è¿æ¥åˆ°æ‰€ç»™IPåœ°å€ï¼ˆä¼ å…¥çš„å‚æ•°ï¼‰
+			myClient.connect(args[0]);
 
 			/**
 			 * Read the get request from the terminal.
 			 */
 			screen.println(args[0] + " is listening to your request:");
-			String request = keyboard.readLine();//¶ÁÈ¡ÊäÈëµÄÃüÁî
+			String request = keyboard.readLine();//è¯»å–è¾“å…¥çš„å‘½ä»¤
 
 			if (request.startsWith("GET")) {
 				/**
 				 * Ask the client to process the GET request.
 				 */
 				myClient.processGetRequest(request);
-				
+
 			} else if (request.startsWith("PUT")) {
 				/**
 				 * Ask the client to process the PUT request.
@@ -82,7 +83,7 @@ public class Client {
 				/**
 				 * Do not process other request.
 				 */
-				screen.println("Bad request! \n");
+				screen.println("Wrong request! \n");
 				myClient.close();
 				return;
 			}
@@ -103,7 +104,7 @@ public class Client {
 				screen.flush();
 				String filename = keyboard.readLine();
 				FileOutputStream outfile = new FileOutputStream(filename);
-	
+
 				/**
 				 * Save the response to the specified file.
 				 */
